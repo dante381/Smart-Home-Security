@@ -13,6 +13,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import android.os.Bundle;
+import android.content.Intent; // <--- import 
+import android.content.res.Configuration;
 
 // import android.content.Intent; // <--- import 
 // import android.content.res.Configuration; // <--- import 
@@ -30,6 +33,20 @@ public class MainActivity extends ReactActivity {
   //     intent.putExtra("newConfig", newConfig);
   //     this.sendBroadcast(intent);
   // }
+
+  @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+      super.onConfigurationChanged(newConfig);
+      Intent intent = new Intent("onConfigurationChanged");
+      intent.putExtra("newConfig", newConfig);
+      this.sendBroadcast(intent);
+  }
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(null);
+  }
+
   @Override
   protected String getMainComponentName() {
     return "frontend";

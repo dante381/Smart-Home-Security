@@ -265,6 +265,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation project(':react-native-notifications')
     // implementation project(':react-native-orientation')
+    // implementation project(':react-native-orientation')
     // implementation 'com.google.firebase:firebase-core:16.0.0'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 

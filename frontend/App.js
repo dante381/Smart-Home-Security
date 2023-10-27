@@ -17,6 +17,7 @@ import {
   StyleSheet,
   Text,
   useColorScheme,
+  Button,
   View,
   Alert,
 } from 'react-native';
@@ -28,10 +29,13 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import {Notifications} from 'react-native-notifications';
+// import {Notifications} from 'react-native-notifications';
 // import {getMessaging, getToken} from '@firebase/messaging';
 import messaging from '@react-native-firebase/messaging';
+import Orientation from 'react-native-orientation';
 // import firebase from '@react-native-firebase/app';
+import {DarkTheme, NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const token = messaging().getToken();
 token.then(data => {
@@ -59,8 +63,39 @@ messaging().setBackgroundMessageHandler(async remoteMessage => {
   await Alert.alert('SmartHomeSecurity', 'Unknown person detected!');
 });
 
+const App1 = ({navigation}) => {
+  Orientation.lockToPortrait();
+  return (
+    <View style={styles.homepage}>
+      {/* <View style={{marginRight: 10}}>
+        <Button title="Add New Face" />
+      </View> */}
+      <View>
+        <Button
+          title="View Camera"
+          onPress={() => {
+            navigation.navigate('camerafeed');
+          }}
+        />
+      </View>
+    </View>
+  );
+};
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
+  return (
+    <NavigationContainer theme={DarkTheme}>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={App1} />
+        <Stack.Screen name="camerafeed" component={Homescreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+const Homescreen = () => {
   // const credentials = {
   //   clientId:
   //     '638558946991-33vrrklk0mjrhddtmc20jkkpr91da9me.apps.googleusercontent.com',
@@ -84,7 +119,7 @@ const App = () => {
 
     return unsubscribe;
   });
-
+  Orientation.lockToLandscape();
   return (
     <View style={styles.container}>
       <StatusBar hidden={true} />
@@ -104,7 +139,7 @@ const App = () => {
           initType: 2,
           hwDecoderEnabled: 1,
           hwDecoderForced: 1,
-          uri: 'rtsp://192.168.170.24:8080/h264.sdp',
+          uri: 'rtsp://192.168.1.17:8080/h264.sdp',
           initOptions: [
             // '--no-audio',
             '--rtsp-tcp',
@@ -125,6 +160,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.Black,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  homepage: {
+    flex: 1,
+    flexDirection: 'row',
+    // backgroundColor: Colors.Black,
+    rowGap: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
