@@ -2,6 +2,7 @@ import cv2 as cv
 from deepface import DeepFace
 import pandas as pd
 import asyncio
+import random
 # from google.colab.patches import cv2_imshow
 
 face_cascade = cv.CascadeClassifier(cv.data.haarcascades + 'haarcascade_frontalface_default.xml')
@@ -11,11 +12,11 @@ cap=cv.VideoCapture(0)
 # cap.set(cv.CAP_PROP_FRAME_HEIGHT, 120)
 
 async def click(count):
-    if(count<300):
-        cv.imwrite(str(count)+'.jpg',frame[y:y+h, x:x+w])
+    if(count<600):
+        cv.imwrite('E:\\Projects\\yolov5surveillance-20230808T135321Z-001\\backend\\Databases\\'+str(count)+'.jpg',frame[y:y+h, x:x+w])
         asyncio.sleep(2)
         print(count)
-count=0
+count=300
 loop=asyncio.get_event_loop()
 while True:
     (grabbed,frame)= cap.read()

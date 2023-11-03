@@ -139,7 +139,7 @@ const Homescreen = () => {
           initType: 2,
           hwDecoderEnabled: 1,
           hwDecoderForced: 1,
-          uri: 'rtsp://192.168.1.17:8080/h264.sdp',
+          uri: 'rtsp://192.168.170.24:8080/h264.sdp',
           initOptions: [
             // '--no-audio',
             '--rtsp-tcp',
