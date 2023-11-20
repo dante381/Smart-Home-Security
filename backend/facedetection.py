@@ -13,7 +13,7 @@ cap=cv.VideoCapture(0)
 
 async def click(count):
     if(count<600):
-        cv.imwrite('E:\\Projects\\yolov5surveillance-20230808T135321Z-001\\backend\\Databases\\'+str(count)+'.jpg',frame[y:y+h, x:x+w])
+        cv.imwrite(r'E:\\Projects\\yolov5surveillance-20230808T135321Z-001\\backend\\Databases\\'+str(count)+'.jpg',frame[y:y+h, x:x+w])
         asyncio.sleep(2)
         print(count)
 count=300

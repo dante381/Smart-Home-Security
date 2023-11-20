@@ -47,19 +47,7 @@ messaging().onTokenRefresh(newToken => {
 });
 
 messaging().setBackgroundMessageHandler(async remoteMessage => {
-  // Extract the body
-  // let message_body = remoteMessage.notification.body;
-  // // Extract the title
-  // let message_title = remoteMessage.notification.title;
-  // Extract the notification image
-  // let avatar = remoteMessage.notification.android.imageUrl;
-
-  // Add the notification to the messages array
-  // setMessages(messages =>
-
-  // );
-
-  // Send a notification alert
+    // Send a notification alert
   await Alert.alert('SmartHomeSecurity', 'Unknown person detected!');
 });
 
@@ -139,7 +127,7 @@ const Homescreen = () => {
           initType: 2,
           hwDecoderEnabled: 1,
           hwDecoderForced: 1,
-          uri: 'rtsp://192.168.170.24:8080/h264.sdp',
+          uri: 'rtsp://192.168.1.58:8080/h264.sdp',
           initOptions: [
             // '--no-audio',
             '--rtsp-tcp',
